@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Breast Cancer Detector</title>
+
+  <style>
+    /* CSS code for button */
+    body {
+      background-image: url('images/world.png');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+    }
+	
+	.login {
+	margin-top: 220px;
+	}
+	
+	.white {
+	color: white;
+	text-shadow: 2px 2px black;
+	}
+  </style>
+  
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+
+<body>
+ 
+ <div class="login">
+	
+    <center>
+    <form action="{{ url_for('predict')}}"method="post">
+        <h1 class="white">Please enter the value of the tumor features</h1>
+		<br>
+        
+    	<input type="text" name="mean_radius" placeholder="mean radius" required="required" />
+        <input type="text" name="mean_texture" placeholder="mean texture" required="required" />
+		<input type="text" name="mean_perimeter" placeholder="mean perimeter" required="required" />
+		<input type="text" name="mean_area" placeholder="mean area" required="required" />
+        <input type="text" name="mean_smoothness" placeholder="mean smoothness" required="required" />
+		<input type="text" name="mean_compactness" placeholder="mean compactness" required="required" />
+		<br><br>
+    	<input type="text" name="mean_concavity" placeholder="mean concavity" required="required" />
+        <input type="text" name="mean_concave_points" placeholder="mean concave points" required="required" />
+		<input type="text" name="mean_symmetry" placeholder="mean symmetry" required="required" />
+    	<input type="text" name="mean_fractal_dimension" placeholder="mean fractal dimension" required="required" />
+        <input type="text" name="radius_error" placeholder="radius error" required="required" />
+		<input type="text" name="texture_error" placeholder="texture error" required="required" />
+		<br><br>
+    	<input type="text" name="perimeter_error" placeholder="perimeter error" required="required" />
+        <input type="text" name="area_error" placeholder="area error " required="required" />
+		<input type="text" name="smoothness_error" placeholder="smoothness error" required="required" />
+    	<input type="text" name="compactness_error" placeholder="compactness error" required="required" />
+        <input type="text" name="concavity_error" placeholder="concavity error" required="required" />
+		<input type="text" name="concave_points_error" placeholder="concave points error" required="required" />
+    	<br><br>
+    	<input type="text" name="symmetry_error" placeholder="symmetry error" required="required" />
+        <input type="text" name="fractal_dimension_error" placeholder="fractal dimension error" required="required" />
+		<input type="text" name="worst_radius" placeholder="worst radius" required="required" />
+    	<input type="text" name="worst_texture" placeholder="worst texture" required="required" />
+        <input type="text" name="worst_perimeter" placeholder="worst perimeter" required="required" />
+		<input type="text" name="worst_area" placeholder="worst area" required="required" />
+		<br><br>
+    	<input type="text" name="worst_smoothness" placeholder="worst smoothness" required="required" />
+        <input type="text" name="worst_compactness" placeholder="worst compactness" required="required" />
+		<input type="text" name="worst_concavity" placeholder="worst concavity" required="required" />
+    	<input type="text" name="worst_concave_points" placeholder="worst concave points" required="required" />
+        <input type="text" name="worst_symmetry" placeholder="'worst symmetry" required="required" />
+		<input type="text" name="worst_fractal_dimension" placeholder="worst fractal dimension" required="required" />
+        <br><br>
+        <br>
+        
+        <button type="submit" class="btn btn-primary" onclick="changeText();"><strong>Predict Cancer</strong></button></a>
+        
+    </form>
+    </center>
+   
+   <!-- Show predicted output using ML model --> 
+   <div>
+       <center>
+   <h1 id="text" style="margin-top:10px; color:#7aa3e6;"></h1>
+       </center>
+   </div>
+
+	<script>
+	
+		let fir = false;
+		let heading = document.getElementById("text");
+		
+		changeText = function(){
+		
+			if (!fir)
+				heading.innerHTML = "Patient has breast cancer";
+			else
+				heading.innerHTML = "Patient does not has breast cancer";
+		
+			fir = !fir;
+		
+		}
+
+		
+	
+	</script>
+
+ </div>
+
+</body>
+</html>
